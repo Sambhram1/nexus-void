@@ -52,6 +52,22 @@ app.get('/generate-config/twitter', async (req, res) => {
   }
 })
  
+// Route to receive proofs
+app.post('/receive-proofs', async (req, res) => {
+  // decode the urlencoded proof object; see below if not using express middlewares for decoding
+  const decodedBody = decodeURIComponent(req.body);
+  const proof = JSON.parse(decodedBody);
+ 
+  // Verify the proof using the SDK verifyProof function
+  const result = await verifyProof(proof)
+  if (!result) {
+    return res.status(400).json({ error: 'Invalid proofs data' });
+  }
+ 
+  console.log('Received proofs:', proof)
+  // Process the proofs here
+  return res.sendStatus(200)
+})
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`)
 })

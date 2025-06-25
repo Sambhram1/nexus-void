@@ -20,6 +20,7 @@ function App() {
       const response = await fetch(BASE_URL + '/generate-config');
       const { reclaimProofRequestConfig } = await response.json();
       const reclaimProofRequest = await ReclaimProofRequest.fromJsonString(reclaimProofRequestConfig);
+      reclaimProofRequest.setAppCallbackUrl(BASE_URL + '/receive-proofs')
       const url = await reclaimProofRequest.getRequestUrl();
       setRequestUrl(url);
       await reclaimProofRequest.startSession({
@@ -47,6 +48,7 @@ function App() {
       const response = await fetch(BASE_URL + '/generate-config/twitter');
       const { reclaimProofRequestConfig } = await response.json();
       const reclaimProofRequest = await ReclaimProofRequest.fromJsonString(reclaimProofRequestConfig);
+      reclaimProofRequest.setAppCallbackUrl(BASE_URL + '/receive-proofs')
       const url = await reclaimProofRequest.getRequestUrl();
       setRequestUrl(url);
       await reclaimProofRequest.startSession({
