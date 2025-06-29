@@ -53,9 +53,9 @@ app.get('/generate-config/twitter', async (req, res) => {
 })
  
 // --- Add your provider IDs here ---
-const KAGGLE_PROVIDER_ID = 'your-kaggle-provider-id';
-const LEETCODE_PROVIDER_ID = 'your-leetcode-provider-id';
-const STACKOVERFLOW_PROVIDER_ID = 'your-stackoverflow-provider-id';
+const KAGGLE_PROVIDER_ID = 'c94476a0-8a75-4563-b70a-bf6124d7c59b';
+const LEETCODE_PROVIDER_ID = 'a9cc0a8b-8ec9-4421-bd31-73f736ade0f3';
+const STACKOVERFLOW_PROVIDER_ID = '9640cb3e-6a1a-43cc-8447-812b676d917f';
 
 // --- Kaggle ---
 app.get('/generate-config/kaggle', async (req, res) => {
