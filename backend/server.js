@@ -52,6 +52,62 @@ app.get('/generate-config/twitter', async (req, res) => {
   }
 })
  
+// --- Add your provider IDs here ---
+const KAGGLE_PROVIDER_ID = 'your-kaggle-provider-id';
+const LEETCODE_PROVIDER_ID = 'your-leetcode-provider-id';
+const STACKOVERFLOW_PROVIDER_ID = 'your-stackoverflow-provider-id';
+
+// --- Kaggle ---
+app.get('/generate-config/kaggle', async (req, res) => {
+  const APP_ID = '0xA6086ff3ed8648399BEEa77D5365422849375f75';
+  const APP_SECRET = '0xca12ccf9f39ca08f18c50266a0ed1225d9dc496511da3ea937c518dada243ffd';
+  const PROVIDER_ID = KAGGLE_PROVIDER_ID;
+
+  try {
+    const reclaimProofRequest = await ReclaimProofRequest.init(APP_ID, APP_SECRET, PROVIDER_ID);
+    reclaimProofRequest.setAppCallbackUrl(BASE_URL + '/receive-proofs');
+    const reclaimProofRequestConfig = reclaimProofRequest.toJsonString();
+    return res.json({ reclaimProofRequestConfig });
+  } catch (error) {
+    console.error('Error generating request config (kaggle):', error);
+    return res.status(500).json({ error: 'Failed to generate request config for kaggle' });
+  }
+});
+
+// --- LeetCode ---
+app.get('/generate-config/leetcode', async (req, res) => {
+  const APP_ID = '0xA6086ff3ed8648399BEEa77D5365422849375f75';
+  const APP_SECRET = '0xca12ccf9f39ca08f18c50266a0ed1225d9dc496511da3ea937c518dada243ffd';
+  const PROVIDER_ID = LEETCODE_PROVIDER_ID;
+
+  try {
+    const reclaimProofRequest = await ReclaimProofRequest.init(APP_ID, APP_SECRET, PROVIDER_ID);
+    reclaimProofRequest.setAppCallbackUrl(BASE_URL + '/receive-proofs');
+    const reclaimProofRequestConfig = reclaimProofRequest.toJsonString();
+    return res.json({ reclaimProofRequestConfig });
+  } catch (error) {
+    console.error('Error generating request config (leetcode):', error);
+    return res.status(500).json({ error: 'Failed to generate request config for leetcode' });
+  }
+});
+
+// --- StackOverflow ---
+app.get('/generate-config/stackoverflow', async (req, res) => {
+  const APP_ID = '0xA6086ff3ed8648399BEEa77D5365422849375f75';
+  const APP_SECRET = '0xca12ccf9f39ca08f18c50266a0ed1225d9dc496511da3ea937c518dada243ffd';
+  const PROVIDER_ID = STACKOVERFLOW_PROVIDER_ID;
+
+  try {
+    const reclaimProofRequest = await ReclaimProofRequest.init(APP_ID, APP_SECRET, PROVIDER_ID);
+    reclaimProofRequest.setAppCallbackUrl(BASE_URL + '/receive-proofs');
+    const reclaimProofRequestConfig = reclaimProofRequest.toJsonString();
+    return res.json({ reclaimProofRequestConfig });
+  } catch (error) {
+    console.error('Error generating request config (stackoverflow):', error);
+    return res.status(500).json({ error: 'Failed to generate request config for stackoverflow' });
+  }
+});
+
 // Route to receive proofs
 app.post('/receive-proofs', async (req, res) => {
   // decode the urlencoded proof object; see below if not using express middlewares for decoding

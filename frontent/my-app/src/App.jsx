@@ -3,7 +3,7 @@ import { ReclaimProofRequest } from '@reclaimprotocol/js-sdk';
 import QRCode from "react-qr-code";
 import './App.css';
 
-const BASE_URL = "http://localhost:3000"; // Change if using ngrok
+const BASE_URL = "https://nexus-void-git-main-sambhrams-projects-06a377b2.vercel.app/"; // Change if using ngrok
 
 function App() {
   const [requestUrl, setRequestUrl] = useState('');
